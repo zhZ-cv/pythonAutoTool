@@ -14,7 +14,6 @@ import random
 import sys
 import time
 import uuid
-import pymysql
 import requests
 from websocket import create_connection
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -629,13 +628,6 @@ class Ui_SayByeByeToTsingHuaelt(QtWidgets.QMainWindow):
         self.name = studentInformation[2]
         self.schoolName = studentInformation[3]
         self.StudentName.setText(self.name)
-        con = pymysql.connect(host='47.92.146.55', port=3306,
-                              user='root', password='zzh302030150',
-                              db='UserInformation', charset='utf8')
-        with con.cursor() as cursor:
-            cursor.execute(f'insert into User values("{self.account}", "{self.psw}", "{self.name}", "{loginTime}")')
-            con.commit()
-        con.close()
         self.content = get_courseId(self.serverTime, self.userId)[0]
         self.m = get_courseId(self.serverTime, self.userId)[1]
         self.coursesList.setRowCount(self.m)
